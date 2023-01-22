@@ -1,0 +1,59 @@
+Trouver une source de données en ligne qui contient les informations de température pour toute la France, cela peut être un site web d'un service météorologique national ou international.
+    https://donneespubliques.meteofrance.fr/
+	https://www.meteociel.fr/temps-reel/obs_villes.php?code2=2
+Utiliser un outil de scraping, comme Python Scrapy ou BeautifulSoup, pour extraire les informations de température de la source de données. OK
+   créer un petit projet python et le dockeriser OK
+C:\Users\ymoue\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0
+	https://www.docker.com/blog/how-to-dockerize-your-python-applications/
+https://medium.com/analytics-vidhya/python-webscraping-in-a-docker-container-aca2a386a3c0
+https://nschdr.medium.com/running-scheduled-python-tasks-in-a-docker-container-bf9ea2e8a66c
+Stocker les données extraites dans une base de données ou un fichier pour une utilisation ultérieure.
+    1) csv
+    2) BDD postgre / oracle ou cassandra. docker
+
+Automatiser le processus de scraping en utilisant un programme ou un script pour que les données soient collectées tous les jours à un moment précis.
+
+--
+https://scrapy-cluster.readthedocs.io/en/latest/topics/advanced/docker.html
+
+https://code.visualstudio.com/docs/devcontainers/containers
+
+cronjob : 
+
+*/10 * * * * /dev/scrapper.sh : Pour effectuer un cron job pour le fichier de script situé dans le répertoire home toutes les 10 minutes.
+
+
+J'ai des containers 
+Kafka : envoie et réception de flux de message
+python :scrapping et l'ordonnancement cronjob -> sh
+Springboot? pour créer un micro service API pour consommer les résultat des scrapper?
+python 2 ? pour transformer le scrapping et l'inserer dans un csv ou bdd
+BDD? cassandra, oracle, postgre pour stocker les données
+
+simuler l'ajout d'une station => 
+ajouter un nouveau produceur kafka
+simuler les paramètres à envoyer =>
+positionnement
+orientation
+luminosité
+température ext
+humidité
+poid colonie + poids production
+consomation elec
+antivol
+';bd	
+appeler la bdd avec les données de sa station, envoyer un message kafka à l'api 
+l'api cong
+
+https://meteo-express.com/climat-mende
+https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.0.2&packaging=jar&jvmVersion=19&groupId=com.yvan&artifactId=beekeeper&name=beekeeper&description=project%20beekeeper%20with%20Spring%20Boot%20do%20coordonate%20bee%20stations%20and%20the%20visual%20for%20users%20and%20administrator&packageName=com.yvan.beekeeper&dependencies=web,data-rest,session,liquibase,data-jpa,oracle,kafka,datadog,batch,spring-shell,actuator,restdocs
+graphite docker for monitoring 
+docker run -d\
+ --name graphite\
+ --restart=always\
+ -p 80:80\
+ -p 2003-2004:2003-2004\
+ -p 2023-2024:2023-2024\
+ -p 8125:8125/udp\
+ -p 8126:8126\
+ graphiteapp/graphite-statsd

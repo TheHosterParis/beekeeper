@@ -1,0 +1,21 @@
+docker run -d --net=host --name=zookeeper -e ZOOKEEPER_CLIENT_PORT=32181 -e ZOOKEEPER_TICK_TIME=2000 -e ZOOKEEPER_SYNC_LIMIT=2 confluentinc/cp-zookeeper:7.3.1
+
+docker run -d --net=host --name=kafka -e KAFKA_ZOOKEEPER_CONNECT=localhost:32181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:29092 -e KAFKA_BROKER_ID=2 -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 confluentinc/cp-kafka:7.3.1
+docker run -d --net=host --name=schema-registry -e SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS=SSL://hostname2:9092 -e SCHEMA_REGISTRY_HOST_NAME=localhost -e SCHEMA_REGISTRY_LISTENERS=http://localhost:8081 -e SCHEMA_REGISTRY_DEBUG=true confluentinc/cp-schema-registry:7.3.1
+
+docker run -d --net=host --name=kafka-rest -e KAFKA_REST_ZOOKEEPER_CONNECT=localhost:32181 -e KAFKA_REST_LISTENERS=http://localhost:8082 -e KAFKA_REST_SCHEMA_REGISTRY_URL=http://localhost:8081 -e KAFKA_REST_BOOTSTRAP_SERVERS=localhost:29092 confluentinc/cp-kafka-rest:7.3.1
+
+kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic bee
+
+
+https://developer.confluent.io/quickstart/kafka-docker/
+docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic quickstart
+
+docker exec --interactive --tty broker kafka-console-producer --bootstrap-server broker:9092 --topic quickstart
+
+ecrire un message a publier : this is my first kafka message. Hello world! this is my third kafka message. I’m on a roll :-D
+
+lire le message : 
+docker exec --interactive --tty broker kafka-console-consumer --bootstrap-server broker:9092 --topic quickstart --from-beginning
+
+https://stackoverflow.com/questions/49873281/register-avro-schema-with-topic-in-schema-registry
