@@ -8,11 +8,15 @@
 		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
     <changeSet id="2023-01-22" author="Mouen Yvan">
         <createTable tableName="house">
-            <column name="id" type="bigint">
+            <column name="ID" type="bigint">
                 <constraints primaryKey="true" primaryKeyName="house_id_pk" />
             </column>
-            <column name="owner" type="varchar(250)">
+            <column name="OWNER" type="varchar2(250)">
                 <constraints unique="true" uniqueConstraintName="house_owner_unq" />
+            </column>
+            <column name="NAME" type="varchar2(250)">
+            </column>
+            <column name="JOURS" type="varchar2(250)">
             </column>
         </createTable>
     </changeSet>

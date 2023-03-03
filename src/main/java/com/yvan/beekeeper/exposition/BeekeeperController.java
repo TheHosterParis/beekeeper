@@ -18,6 +18,10 @@ public class BeekeeperController {
 
     Logger logger = LoggerFactory.getLogger(BeekeeperController.class);
 
+    /**
+     * @param id
+     * @return
+     */
     @GetMapping("/house")
     public Optional<House> getHouse(@RequestParam Long id) {
         logger.info("start of service getHouse");
@@ -30,8 +34,40 @@ public class BeekeeperController {
 
     @PostMapping("/house")
     public void setHouse(@RequestBody House house) {
-        logger.info("start of service setHouse");
+        logger.info("start of service setHouse", house);
         // Code pour enregistrer l'objet House dans la base de données ou un autre emplacement
-        beekeeperService.saveHouse(house.getOwner());
+        beekeeperService.saveHouse(house);
+    }
+
+    @DeleteMapping("/house")
+    public void deleteHouse(@RequestParam Long id) {
+        logger.info("start of service deleteHouse");
+        // Code pour supprimer l'objet House dans la base de données ou un autre emplacement
+        beekeeperService.deleteHouse(id);
+    }
+
+    @PutMapping("/house")
+    public void updateHouse(@RequestParam Long id, @RequestBody House house) {
+        logger.info("start of service updateHouse");
+        // Code pour mettre à jour l'objet House dans la base de données ou un autre emplacement
+        beekeeperService.updateHouse(id, house);
+    }
+
+    @GetMapping("/houses")
+    public Iterable<House> getAllHouses() {
+        logger.info("start of service getAllHouses");
+        // Code pour récupérer tous les objets House à partir de la base de données ou d'un autre emplacement
+        final Iterable<House> houses = beekeeperService.getAllHouses();
+        logger.info("getAllHouses service return {}", houses);
+        return houses;
+    }
+
+    @GetMapping("/houses/since")
+    public Iterable<House> getAllHousesSince(@RequestParam String date) {
+        logger.info("start of service getAllHousesSince");
+        // Code pour récupérer tous les objets House à partir de la base de données ou d'un autre emplacement
+        final Iterable<House> houses = beekeeperService.getAllHousesSince(date);
+        logger.info("getAllHousesSince service return {}", houses);
+        return houses;
     }
 }

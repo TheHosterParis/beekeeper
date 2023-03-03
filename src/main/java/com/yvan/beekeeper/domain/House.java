@@ -3,17 +3,26 @@ package com.yvan.beekeeper.domain;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 @Entity
+@Table(name = "HOUSE", schema = "SYSTEM")
 public class House {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "ID", nullable = false)
     @JdbcTypeCode(SqlTypes.BIGINT)
     private Long id;
 
+    @Column(name = "NAME")
+    private String name;
+
+    @Column(name = "OWNER")
     private String owner;
+
+    @Column(name = "JOURS")
+    private String date;
 
     public Long getId() {
         return id;
@@ -23,12 +32,30 @@ public class House {
         this.id = id;
     }
 
-    public House(Long id, String owner) {
+    public House(Long id, String name, String date, String owner) {
         this.id = id;
+        this.name = name;
+        this.date = date;
         this.owner = owner;
     }
 
     public House() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String  getDate() {
+        return date;
+    }
+
+    public void setDate(String  date) {
+        this.date = date;
     }
 
     public String getOwner() {
