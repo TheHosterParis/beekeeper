@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "ad19fa52-f57b-49bf-b94e-d99e69a3ffe2",
+		"name": "beekeeper",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6941334"
+	},
+	"item": [
+		{
+			"name": "GetHouses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/beekeeper/houses",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"beekeeper",
+						"houses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetHouse",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/beekeeper/house?id=-4724393484930523548",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"beekeeper",
+						"house"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "-4724393484930523548"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SaveHouse",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"owner\": \"yvan\",\r\n    \"date\": 1677857406,\r\n    \"name\": \"yvan\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/beekeeper/house",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"beekeeper",
+						"house"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "putHouse",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"owner\": \"alex\",\r\n    \"date\": 1677857406,\r\n    \"name\": \"alex\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/beekeeper/house?id=-743691469279721948",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"beekeeper",
+						"house"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "-743691469279721948"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
