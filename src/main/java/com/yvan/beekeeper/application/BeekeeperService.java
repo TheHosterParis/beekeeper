@@ -2,6 +2,7 @@ package com.yvan.beekeeper.application;
 
 import com.yvan.beekeeper.domain.House;
 import com.yvan.beekeeper.domain.HouseRepository;
+import com.yvan.beekeeper.exposition.kafka.BeeHouseProducer;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class BeekeeperService {
 
     @Autowired
     private HouseRepository houseRepository;
+
+    @Autowired
+    BeeHouseProducer beeHouseProducer;
 
     public BeekeeperService() {
     }
@@ -56,5 +60,11 @@ public class BeekeeperService {
         return houseRepository.findAllHousesSince(date);
     }
 
+    public void sendHousesToKafka() {
+        houseRepository.findAll().forEach(house -> {
+            //send to kafka
+            beeHouseProducer.sendHouseMessage(house);
+        });
+    }
 
 }

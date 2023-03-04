@@ -6,4 +6,11 @@ spring:
   liquibase:
     change-log: classpath:db/changelog/changelog-master.xml
 server:
-  port : 8081
+  port : 8083
+  kafka:
+    bootstrap-servers: localhost:9092
+    topic:
+      name: house
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.json.JsonSerializer

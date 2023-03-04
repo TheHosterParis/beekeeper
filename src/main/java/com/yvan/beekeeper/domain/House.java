@@ -4,15 +4,22 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "HOUSE", schema = "SYSTEM")
+@Getter
+@Setter
+@ToString
 public class House {
     @Id
     @Column(name = "ID", nullable = false)
     @JdbcTypeCode(SqlTypes.BIGINT)
+
     private Long id;
 
     @Column(name = "NAME")
@@ -50,11 +57,11 @@ public class House {
         this.name = name;
     }
 
-    public String  getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(String  date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -64,5 +71,17 @@ public class House {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    //implementer le toString
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", owner='" + owner + '\'' +
+                ", date='" + date + '\'' +
+                '}';
     }
 }

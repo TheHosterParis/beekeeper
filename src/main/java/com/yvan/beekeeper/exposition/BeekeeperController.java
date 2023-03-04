@@ -70,4 +70,12 @@ public class BeekeeperController {
         logger.info("getAllHousesSince service return {}", houses);
         return houses;
     }
+
+    @PostMapping("/kafka/houses")
+    public void sendHousesToKafka() {
+        logger.info("start of service sendHousesToKafka");
+        // Code pour envoyer les objets House à un topic Kafka
+        beekeeperService.sendHousesToKafka();
+        logger.info("sendHousesToKafka service return {}", "OK");
+    }
 }
