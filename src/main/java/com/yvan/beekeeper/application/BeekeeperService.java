@@ -43,11 +43,17 @@ public class BeekeeperService {
 
 
     public void updateHouse(final Long id, final House houseToUpdate) {
-        final House house = houseRepository.findById(id).get();
-        house.setName(houseToUpdate.getName());
-        house.setDate(houseToUpdate.getDate());
-        house.setOwner(houseToUpdate.getOwner());
-        houseRepository.save(house);
+
+        if (houseRepository.findById(id).isPresent()) {
+            final House house = houseRepository.findById(id).get();
+            house.setName(houseToUpdate.getName());
+            house.setDate(houseToUpdate.getDate());
+            house.setOwner(houseToUpdate.getOwner());
+            houseRepository.save(house);
+        } else {
+            final House house = new House(new Random().nextLong(),houseToUpdate.getName(), houseToUpdate.getDate(), houseToUpdate.getOwner());
+            houseRepository.save(house);
+        }
     }
 
 

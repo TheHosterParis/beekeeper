@@ -46,6 +46,11 @@ public class House {
         this.owner = owner;
     }
 
+    public House(String name, String date, String owner) {
+        this.name = name;
+        this.date = date;
+        this.owner = owner;
+    }
     public House() {
     }
 

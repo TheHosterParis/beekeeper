@@ -14,3 +14,7 @@ server:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.json.JsonSerializer
+kafka:
+  topic: beehouse
+  message: 'Hello from the beehouse!'
+  publish-rate: 60000 # publish every minute
