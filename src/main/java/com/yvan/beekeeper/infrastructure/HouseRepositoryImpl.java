@@ -2,7 +2,6 @@ package com.yvan.beekeeper.infrastructure;
 
 import com.yvan.beekeeper.domain.House;
 import com.yvan.beekeeper.domain.HouseRepository;
-
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -39,5 +38,10 @@ public class HouseRepositoryImpl implements HouseRepository {
     @Override
     public void save(House house) {
         houseRepository.save(house);
+    }
+
+    @Override
+    public House findRandomHouse() {
+        return houseRepository.findRandomHouse();
     }
 }

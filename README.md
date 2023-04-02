@@ -35,3 +35,13 @@ docker run -v jiraVolume:/var/atlassian/application-data/jira --name="jira" -d -
 
 username: dev
 pwd: dev
+
+### Cassandra
+docker pull cassandra
+docker run --name cassandra -p 9042:9042 -d cassandra:latest
+docker exec -it cassandra cqlsh
+
+### Hadop
+docker pull apache/hadoop
+docker exec -it hadoop /bin/bash
+docker run -it apache/hadoop /bin/bash

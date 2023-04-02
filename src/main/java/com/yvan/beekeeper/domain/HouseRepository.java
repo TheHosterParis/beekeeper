@@ -13,4 +13,6 @@ public interface HouseRepository {
     public Iterable<House> findAll();
 
     public void save(House house);
+
+    House findRandomHouse();
 }

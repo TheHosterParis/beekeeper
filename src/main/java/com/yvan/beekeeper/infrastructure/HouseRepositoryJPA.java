@@ -11,4 +11,6 @@ public interface HouseRepositoryJPA extends JpaRepository<House, Long> {
     @Query("SELECT h FROM House h WHERE h.date > ?1")
     Iterable<House> findAllHousesSince(String date);
 
+    @Query("SELECT h FROM House h ORDER BY RAND()")
+    House findRandomHouse();
 }

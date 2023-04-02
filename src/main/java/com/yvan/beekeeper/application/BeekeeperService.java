@@ -56,6 +56,10 @@ public class BeekeeperService {
         }
     }
 
+    //get a random house
+    public House getRandomHouse() {
+        return houseRepository.findRandomHouse();
+    }
 
     public Iterable<House> getAllHouses() {
         return houseRepository.findAll();

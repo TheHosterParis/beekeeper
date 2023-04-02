@@ -14,14 +14,14 @@ public class BeeHouseConsumer {
     //create a consumer that will listen to the topic house. the consumer log the message received in the console, the comsumer insert the message in the database
 
     @Autowired
-    private BeekeeperService BeekeeperService;
+    private BeekeeperService beekeeperService;
 
     @KafkaListener(topics = "house", groupId = "house-group")
     public void consume(House message) {
         // Log the received message
-        System.out.println("Message logged: " + message);
-        message.setDate(Date.from(java.time.Instant.now()).toString());
+        System.out.println("Message consuming: " + message);
         // Pass the message to updateHouses method
-        BeekeeperService.updateHouse(message.getId(), message);
+        beekeeperService.saveHouse(message);
+        //beekeeperService.updateHouse(message.getId(), message);
     }
 }
