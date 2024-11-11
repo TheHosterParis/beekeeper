@@ -1,25 +1,23 @@
 package com.yvan.beekeeper.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.persistence.*;
+import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.util.List;
+
 @Entity
-@Table(name = "HOUSE", schema = "SYSTEM")
+@Table(name = "HOUSE", schema = "beekeeper")
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class House {
     @Id
     @Column(name = "ID", nullable = false)
     @JdbcTypeCode(SqlTypes.BIGINT)
-
     private Long id;
 
     @Column(name = "NAME")
@@ -31,27 +29,32 @@ public class House {
     @Column(name = "JOURS")
     private String date;
 
+    @OneToMany(mappedBy = "house", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Person> persons;
+
+    public House(String name, String owner, String date) {
+        this.name = name;
+        this.owner = owner;
+        this.date = date;
+    }
+
+    public House(Long id, String name, String owner, String date) {
+        this.id = id;
+        this.name = name;
+        this.owner = owner;
+        this.date = date;
+    }
+
+    public House() {
+
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public House(Long id, String name, String date, String owner) {
-        this.id = id;
-        this.name = name;
-        this.date = date;
-        this.owner = owner;
-    }
-
-    public House(String name, String date, String owner) {
-        this.name = name;
-        this.date = date;
-        this.owner = owner;
-    }
-    public House() {
     }
 
     public String getName() {
@@ -62,14 +65,6 @@ public class House {
         this.name = name;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public String getOwner() {
         return owner;
     }
@@ -78,15 +73,19 @@ public class House {
         this.owner = owner;
     }
 
-    //implementer le toString
+    public String getDate() {
+        return date;
+    }
 
-    @Override
-    public String toString() {
-        return "House{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", owner='" + owner + '\'' +
-                ", date='" + date + '\'' +
-                '}';
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public List<Person> getPersons() {
+        return persons;
+    }
+
+    public void setPersons(List<Person> persons) {
+        this.persons = persons;
     }
 }

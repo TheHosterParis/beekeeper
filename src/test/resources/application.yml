@@ -1,9 +1,20 @@
 spring:
   datasource:
-    url: jdbc:oracle:thin:@//localhost:1521/ORCLCDB
-    username: system
-    password: 1789Yvan
+    url: jdbc:postgresql://localhost:5432/beekeeper
+    username: postgres
+    password: root
   liquibase:
     change-log: classpath:db/changelog/changelog-master.xml
 server:
-  port : 8088
+  port: 8083
+  kafka:
+    bootstrap-servers: localhost:9092
+    topic:
+      name: test_house
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.json.JsonSerializer
+kafka:
+  topic: test_beehouse
+  message: 'Hello from the test beehouse!'
+  publish-rate: 60000 # publish every minute

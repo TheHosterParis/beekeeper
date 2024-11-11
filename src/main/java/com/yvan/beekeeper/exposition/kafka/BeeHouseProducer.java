@@ -2,27 +2,23 @@ package com.yvan.beekeeper.exposition.kafka;
 
 import com.yvan.beekeeper.application.BeekeeperService;
 import com.yvan.beekeeper.domain.House;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.kafka.core.KafkaOperations;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Random;
 
 @Component
 public class BeeHouseProducer {
 
-    @Autowired
-    private BeekeeperService beekeeperService;
+    private final BeekeeperService beekeeperService;
 
     private final KafkaTemplate<String, House> kafkaTemplate;
 
     //@Value("${spring.kafka.producer.topic}")
-    private String topicHouse = "house";
+    private final String topicHouse = "house";
 
     @Value("${kafka.topic}")
     private String topic;
@@ -36,8 +32,9 @@ public class BeeHouseProducer {
     //configurer le producer avec un json serializer
     //https://www.baeldung.com/spring-kafka-json-serializer-deserializer
 
-    public BeeHouseProducer(KafkaTemplate<String, House> kafkaTemplate) {
+    public BeeHouseProducer(KafkaTemplate<String, House> kafkaTemplate, BeekeeperService beekeeperService) {
         this.kafkaTemplate = kafkaTemplate;
+        this.beekeeperService = beekeeperService;
     }
 
     public void sendHouseMessage(House house) {
@@ -60,8 +57,7 @@ public class BeeHouseProducer {
     }
 
     private House UpdateRandomHouse() {
-        House house = beekeeperService.getRandomHouse();
-        return house;
+        return beekeeperService.getRandomHouse();
     }
 
     private static House CreateHouse() {

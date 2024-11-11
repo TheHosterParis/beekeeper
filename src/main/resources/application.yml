@@ -1,12 +1,13 @@
 spring:
   datasource:
-    url: jdbc:oracle:thin:@//localhost:1521/ORCLCDB
-    username: system
-    password: 1789Yvan
+    url: jdbc:postgresql://localhost:5432/beekeeper
+    username: postgres
+    password: root
+    default-schema: beekeeper
   liquibase:
     change-log: classpath:db/changelog/changelog-master.xml
 server:
-  port : 8083
+  port: 8083
   kafka:
     bootstrap-servers: localhost:9092
     topic:

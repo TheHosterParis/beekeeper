@@ -4,7 +4,6 @@ import com.yvan.beekeeper.domain.House;
 import com.yvan.beekeeper.domain.HouseRepository;
 import com.yvan.beekeeper.exposition.kafka.BeeHouseProducer;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,17 +13,16 @@ import java.util.Random;
 @Transactional
 public class BeekeeperService {
 
-    @Autowired
     private HouseRepository houseRepository;
 
-    @Autowired
-    BeeHouseProducer beeHouseProducer;
+    private BeeHouseProducer beeHouseProducer;
 
     public BeekeeperService() {
     }
 
-    public BeekeeperService(HouseRepository houseRepository) {
+    public BeekeeperService(HouseRepository houseRepository, BeeHouseProducer beeHouseProducer) {
         this.houseRepository = houseRepository;
+        this.beeHouseProducer = beeHouseProducer;
     }
 
     public void saveHouse(final House house) {

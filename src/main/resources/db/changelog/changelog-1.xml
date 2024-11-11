@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
     <changeSet id="2023-01-22" author="Mouen Yvan">
-        <createTable tableName="house">
+        <createTable tableName="HOUSE">
             <column name="ID" type="bigint">
                 <constraints primaryKey="true" primaryKeyName="house_id_pk"/>
             </column>
@@ -19,15 +19,16 @@
         </createTable>
     </changeSet>
     <changeSet id="2023-04-02" author="Mouen Yvan">
-        <createTable tableName="queenbee">
+        <createTable tableName="PERSON">
             <column name="ID" type="bigint">
                 <constraints primaryKey="true" primaryKeyName="bee_id_pk"/>
             </column>
             <column name="NAME" type="varchar2(250)">
             </column>
             <column name="HOUSE_ID" type="bigint">
-                <constraints nullable="false"/>
+                <constraints nullable="false" foreignKeyName="house_id_fk" references="house(ID)"/>
             </column>
+
         </createTable>
     </changeSet>
 </databaseChangeLog>
