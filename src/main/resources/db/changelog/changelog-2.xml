@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="2024-11-11" author="Mouen Yvan">
+        <insert tableName="HOUSE">
+            <column name="ID" valueNumeric="1"/>
+            <column name="NAME" value="House A"/>
+            <column name="DATE" value="2023-10-10"/>
+            <column name="ADDRESS" value="1234 Elm St"/>
+            <column name="COORDINATES" value="48.856155160359066, 2.436921025210876"/>
+            <column name="person_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="HOUSE">
+            <column name="ID" valueNumeric="2"/>
+            <column name="NAME" value="House B"/>
+            <column name="DATE" value="2023-10-11"/>
+            <column name="ADDRESS" value="5678 Oak St"/>
+            <column name="COORDINATES" value="48.855395354941635, 2.439230616061428"/>
+            <column name="person_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="PERSON">
+            <column name="ID" valueNumeric="1"/>
+            <column name="NAME" value="Alice"/>
+            <column name="ADDRESS" value="1234 Elm St"/>
+            <column name="DATE" value="2023-10-10"/>
+        </insert>
+        <insert tableName="PERSON">
+            <column name="ID" valueNumeric="2"/>
+            <column name="NAME" value="Bob"/>
+            <column name="ADDRESS" value="5678 Oak St"/>
+            <column name="DATE" value="2023-10-10"/>
+        </insert>
+        <insert tableName="PERSON">
+            <column name="ID" valueNumeric="3"/>
+            <column name="NAME" value="Charlie"/>
+            <column name="ADDRESS" value="91011 Pine St"/>
+            <column name="DATE" value="2023-10-10"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

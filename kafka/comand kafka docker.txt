@@ -19,3 +19,7 @@ lire le message :
 docker exec --interactive --tty broker kafka-console-consumer --bootstrap-server broker:9092 --topic quickstart --from-beginning
 
 https://stackoverflow.com/questions/49873281/register-avro-schema-with-topic-in-schema-registry
+
+-- start
+install plugin docker de inteliJ
+Lancer le docker-compose.yml

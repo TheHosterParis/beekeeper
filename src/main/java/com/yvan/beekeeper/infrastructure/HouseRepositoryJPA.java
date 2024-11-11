@@ -8,9 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 public interface HouseRepositoryJPA extends JpaRepository<House, Long> {
 
     //for a given house,  get all the bees that are in it since a given date
-    @Query("SELECT h FROM House h WHERE h.date > ?1")
+    @Query(value = "SELECT * FROM house WHERE date > ?1", nativeQuery = true)
     Iterable<House> findAllHousesSince(String date);
 
-    @Query("SELECT h FROM House h ORDER BY RAND()")
+    @Query(value = "SELECT * FROM House ORDER BY RANDOM() LIMIT 1", nativeQuery = true)
     House findRandomHouse();
 }

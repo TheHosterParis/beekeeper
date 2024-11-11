@@ -4,15 +4,15 @@ import java.util.Optional;
 
 public interface HouseRepository {
 
-    public Iterable<House> findAllHousesSince(String date);
+    Iterable<House> findAllHousesSince(String date);
 
-    public Optional<House> findById(Long id);
+    Optional<House> findById(Long id);
 
-    public void deleteById(Long id);
+    void deleteById(Long id);
 
-    public Iterable<House> findAll();
+    Iterable<House> findAll();
 
-    public void save(House house);
+    void save(House house);
 
     House findRandomHouse();
 }

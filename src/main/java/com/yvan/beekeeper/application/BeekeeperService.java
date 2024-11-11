@@ -2,6 +2,7 @@ package com.yvan.beekeeper.application;
 
 import com.yvan.beekeeper.domain.House;
 import com.yvan.beekeeper.domain.HouseRepository;
+import com.yvan.beekeeper.domain.PersonRepository;
 import com.yvan.beekeeper.exposition.kafka.BeeHouseProducer;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -14,20 +15,18 @@ import java.util.Random;
 public class BeekeeperService {
 
     private HouseRepository houseRepository;
-
+    private PersonRepository personRepository;
     private BeeHouseProducer beeHouseProducer;
 
-    public BeekeeperService() {
-    }
-
-    public BeekeeperService(HouseRepository houseRepository, BeeHouseProducer beeHouseProducer) {
+    public BeekeeperService(HouseRepository houseRepository, BeeHouseProducer beeHouseProducer, PersonRepository personRepository) {
         this.houseRepository = houseRepository;
         this.beeHouseProducer = beeHouseProducer;
+        this.personRepository = personRepository;
     }
 
     public void saveHouse(final House house) {
         Long id = new Random().nextLong();
-        final House houseToSave = new House(id, house.getName(), house.getDate(), house.getOwner());
+        final House houseToSave = new House(id, house.getName(), house.getDate());
         houseRepository.save(houseToSave);
     }
 
@@ -46,10 +45,9 @@ public class BeekeeperService {
             final House house = houseRepository.findById(id).get();
             house.setName(houseToUpdate.getName());
             house.setDate(houseToUpdate.getDate());
-            house.setOwner(houseToUpdate.getOwner());
             houseRepository.save(house);
         } else {
-            final House house = new House(new Random().nextLong(),houseToUpdate.getName(), houseToUpdate.getDate(), houseToUpdate.getOwner());
+            final House house = new House(new Random().nextLong(),houseToUpdate.getName(), houseToUpdate.getDate());
             houseRepository.save(house);
         }
     }

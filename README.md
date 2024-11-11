@@ -4,11 +4,19 @@
 The environment of this app is fully using docker containers
 In order to use the full local environnent follow the steps for each component
 NB: Watch out with the binding port
-### Oracle
+### Oracle DEPRECATED
 checkout docker oracle project
 ./buildContainerImage.sh -e -v 19.3.0
 docker run -d --name oracle -p 1521:1521 -p 5500:5500 -e ORACLE_PWD=1789Yvan oracle/database:19.3.0-ee
 sqlplus system/1789Yvan@//localhost:1521/ORCLCDB
+
+### Postgres
+postgre local environnement
+schema_name: beekeper
+address: localhost
+port: 5432
+user: postgres 
+password: root
 
 ### Jenkins
 docker pull jenkins/jenkins

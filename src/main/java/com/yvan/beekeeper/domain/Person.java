@@ -1,20 +1,23 @@
 package com.yvan.beekeeper.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.util.List;
+
 @Entity
-@Table(name = "PERSON", schema = "beekeeper")
+@Table(name = "person", schema = "beekeeper")
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
-@NoArgsConstructor
 public class Person {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")
+    @SequenceGenerator(name = "person_seq", sequenceName = "person_seq", allocationSize = 1)
     @Column(name = "ID", nullable = false)
     @JdbcTypeCode(SqlTypes.BIGINT)
     private Long id;
@@ -22,15 +25,21 @@ public class Person {
     @Column(name = "NAME")
     private String name;
 
-    @Column(name = "OWNER")
-    private String owner;
+    @Column(name = "ADDRESS")
+    private String address;
 
-    @Column(name = "JOURS")
+    @Column(name = "DATE")
     private String date;
 
-    @ManyToOne
-    @JoinColumn(name = "house_id")
-    private House house;
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<House> houses;
+
+    public Person(long l, String name, String date, String owner) {
+    }
+
+    public Person() {
+    }
 
     public Long getId() {
         return id;
@@ -48,14 +57,6 @@ public class Person {
         this.name = name;
     }
 
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
     public String getDate() {
         return date;
     }
@@ -64,11 +65,19 @@ public class Person {
         this.date = date;
     }
 
-    public House getHouse() {
-        return house;
+    public List<House> getHouses() {
+        return houses;
     }
 
-    public void setHouse(House house) {
-        this.house = house;
+    public void setHouses(List<House> houses) {
+        this.houses = houses;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

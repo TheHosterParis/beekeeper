@@ -1,3 +1,4 @@
+/*
 package com.yvan.beekeeper.application;
 
 import org.apache.kafka.common.protocol.types.Field;
@@ -62,3 +63,4 @@ public class KafkaService {
     }
 
 }
+*/

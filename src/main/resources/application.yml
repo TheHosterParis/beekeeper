@@ -4,8 +4,13 @@ spring:
     username: postgres
     password: root
     default-schema: beekeeper
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
   liquibase:
     change-log: classpath:db/changelog/changelog-master.xml
+    default-schema: beekeeper
 server:
   port: 8083
   kafka:
