@@ -30,7 +30,7 @@ class BeekeeperServiceTest {
     void testSaveHouse() {
         String name = "Bee House";
         
-        House house = new House(1L, name, "date", "Yvan");
+        House house = new House(1L, name, "date");
         when(houseRepository.save(any(House.class))).thenReturn(house);
 
         beekeeperService.saveHouse(house);
@@ -43,7 +43,7 @@ class BeekeeperServiceTest {
         Long id = 1L;
         String name = "Bee House";
         
-        House house = new House(1L, name, "date", "Yvan");
+        House house = new House(1L, name, "date");
         when(houseRepository.findById(id)).thenReturn(Optional.of(house));
 
         Optional<House> result = beekeeperService.getHouse(id);
@@ -67,7 +67,7 @@ class BeekeeperServiceTest {
         Long id = 1L;
         String name = "New Bee House";
         
-        House house = new House(id, "Bee House", "date", "Yvan");
+        House house = new House(id, "Bee House", "date");
         when(houseRepository.findById(id)).thenReturn(Optional.of(house));
 
         beekeeperService.updateHouse(id, house);
